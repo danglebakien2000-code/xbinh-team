@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>XBINH TEAM</title>
+
+  <style>
+    /* ================================
+       XBINH TEAM - GAMING UTILITY UI
+       ================================ */
+
+    :root {
+      --bg: #070912;
+      --card: rgba(16, 21, 36, 0.82);
+      --card-border: rgba(255,255,255,.08);
+      --text: #f5f7ff;
+      --muted: #8992aa;
+      --primary: #7c5cff;
+      --secondary: #00d9ff;
+      --success: #20e68a;
+      --danger: #ff5277;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124,92,255,.20), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0,217,255,.13), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(124,92,255,.10), transparent 35%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Background grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .app {
+      width: 100%;
+      max-width: 560px;
+      margin: auto;
+      padding: 18px 15px 35px;
+      animation: appIn .6s ease both;
+    }
+
+    @keyframes appIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+      position: relative;
+      padding: 22px 8px 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      font-size: 24px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow:
+        0 0 25px rgba(124,92,255,.35),
+        inset 0 1px 1px rgba(255,255,255,.3);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 1.5px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff, #b8baff, #69eaff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .brand p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+    }
+
+    /* ================= STATUS ================= */
+
+    .system-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 5px 0 17px;
+      padding: 12px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      background: rgba(255,255,255,.035);
+      backdrop-filter: blur(15px);
+    }
+
+    .system-ready {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--success);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .7px;
+    }
+
+    .system-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px var(--success);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.75); }
+    }
+
+    .system-name {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* ================= CARDS ================= */
+
+    .card {
+      position: relative;
+      margin-bottom: 15px;
+      padding: 18px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: cardIn .5s ease both;
+    }
+
+    .card:nth-of-type(2) {
+      animation-delay: .08s;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      top: -80px;
+      right: -50px;
+      background: var(--primary);
+      filter: blur(60px);
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .title-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(124,92,255,.13);
+      border: 1px solid rgba(124,92,255,.2);
+      font-size: 19px;
+    }
+
+    .card-title h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: .4px;
+    }
+
+    .card-title small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* ON/OFF badge */
+
+    .badge {
+      padding: 6px 9px;
+      border-radius: 9px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .6px;
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.06);
+      transition: .25s ease;
+    }
+
+    .badge.on {
+      color: var(--success);
+      background: rgba(32,230,138,.09);
+      border-color: rgba(32,230,138,.2);
+      box-shadow: 0 0 16px rgba(32,230,138,.08);
+    }
+
+    /* ================= BUTTONS ================= */
+
+    .buttons {
+      display: grid;
+      gap: 10px;
+    }
+
+    .btn {
+      position: relative;
+      min-height: 53px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 15px;
+      color: #fff;
+      background: rgba(255,255,255,.045);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      cursor: pointer;
+      overflow: hidden;
+      transition:
+        transform .15s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn.active {
+      background: linear-gradient(
+        135deg,
+        rgba(124,92,255,.28),
+        rgba(0,217,255,.10)
+      );
+      border-color: rgba(124,92,255,.5);
+      box-shadow:
+        0 0 22px rgba(124,92,255,.13),
+        inset 0 0 15px rgba(124,92,255,.05);
+    }
+
+    .btn-danger.active {
+      background: rgba(255,82,119,.09);
+      border-color: rgba(255,82,119,.38);
+      box-shadow: 0 0 20px rgba(255,82,119,.08);
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      margin-right: 5px;
+    }
+
+    /* Ripple */
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,.28);
+      transform: scale(0);
+      animation: ripple .55s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ================= FPS PANEL ================= */
+
+    .fps-display {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      min-height: 54px;
+      border-radius: 15px;
+      border: 1px solid rgba(32,230,138,.22);
+      background: rgba(32,230,138,.055);
+      color: var(--success);
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      box-shadow: inset 0 0 20px rgba(32,230,138,.03);
+    }
+
+    .fps-display.show {
+      display: flex;
+      animation: fpsIn .3s ease;
+    }
+
+    @keyframes fpsIn {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .fps-number {
+      min-width: 45px;
+      text-align: center;
+    }
+
+    .fps-note {
+      display: block;
+      text-align: center;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    /* ================= TELEGRAM ================= */
+
+    .telegram {
+      position: relative;
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,217,255,.17);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,217,255,.09),
+          rgba(124,92,255,.08)
+        );
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .telegram::after {
+      content: "✈";
+      position: absolute;
+      right: -8px;
+      bottom: -25px;
+      font-size: 110px;
+      opacity: .035;
+      transform: rotate(-15deg);
+    }
+
+    .telegram h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .telegram p {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .telegram-btn {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background: linear-gradient(135deg, #159bd7, #157be8);
+      font-weight: 900;
+      letter-spacing: .4px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(21,137,224,.2);
+      transition: .18s ease;
+    }
+
+    .telegram-btn:active {
+      transform: scale(.97);
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast-container {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 100;
+      width: calc(100% - 30px);
+      max-width: 500px;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 10px 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      background: rgba(10,13,24,.92);
+      backdrop-filter: blur(18px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 15px 40px rgba(0,0,0,.4);
+      animation: toastIn .28s ease both;
+    }
+
+    .toast.hide {
+      animation: toastOut .25s ease both;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toastOut {
+      to {
+        opacity: 0;
+        transform: translateY(10px) scale(.96);
+      }
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      text-align: center;
+      padding: 22px 5px 5px;
+      color: #596176;
+      font-size: 9px;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    @media (min-width: 600px) {
+      .app {
+        padding-top: 35px;
+      }
+
+      .brand h1 {
+        font-size: 31px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+      <div class="brand">
+        <div class="logo">X</div>
+
+        <div>
+          <h1>XBINH TEAM</h1>
+          <p>GAMING UTILITY • XBINH TEAM</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= SYSTEM STATUS ================= -->
+
+    <section class="system-status">
+      <div class="system-ready">
+        <span class="system-dot"></span>
+        <span id="systemReady">SYSTEM READY</span>
+      </div>
+
+      <div class="system-name">
+        XBINH TEAM TOOL
+      </div>
+    </section>
+
+    <!-- ================= CHE MÃ TRẬN ================= -->
+
+    <section class="card">
+
+      <div class="card-title">
+        <div class="title-left">
+          <div class="title-icon">🎮</div>
+
+          <div>
+            <h2>CHE MÃ TRẬN</h2>
+            <small>Chế độ mô phỏng giao diện</small>
+          </div>
+        </div>
+
+        <div class="badge" id="hideBadge">
+          OFF
+        </div>
+      </div>
+
+      <div class="buttons">
+
+        <div class="btn-row">
+
+          <button
+            class="btn"
+            id="hideOnBtn"
+            onclick="setHideMatch(true, this)"
+          >
+            <span class="btn-icon">🛡️</span>
+            CHE MÃ TRẬN
+          </button>
+
+          <button
+            class="btn btn-danger"
+            id="hideOffBtn"
+            onclick="setHideMatch(false, this)"
+          >
+            <span class="btn-icon">✕</span>
+            TẮT CHE MÃ TRẬN
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="fps-note" id="hideStatus">
+        Trạng thái: Đang tắt
+      </div>
+
+    </section>
+
+    <!-- ================= SHOW FPS ================= -->
+
+    <section class="card">
+
+      <div class="card-title">
+
+        <div class="title-left">
+
+          <div class="title-icon">⚡</div>
+
+          <div>
+            <h2>SHOW FPS</h2>
+            <small>Bộ điều khiển FPS mô phỏng</small>
+          </div>
+
+        </div>
+
+        <div class="badge" id="fpsBadge">
+          OFF
+        </div>
+
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="btn"
+          id="fps120Btn"
+          onclick="setFPSMode('120', this)"
+        >
+          🚀 KÍCH 120 FPS
+        </button>
+
+        <button
+          class="btn"
+          id="fpsShowBtn"
+          onclick="setFPSMode('show', this)"
+        >
+          📊 HIỆN FPS
+        </button>
+
+        <button
+          class="btn btn-danger"
+          id="fpsOffBtn"
+          onclick="setFPSMode('off', this)"
+        >
+          ✕ TẮT
+        </button>
+
+      </div>
+
+      <div
+        class="fps-display"
+        id="fpsDisplay"
+      >
+        FPS:
+        <span
+          class="fps-number"
+          id="fpsNumber"
+        >120</span>
+      </div>
+
+      <span class="fps-note">
+        Demo giao diện — không can thiệp FPS của game thật.
+      </span>
+
+    </section>
+
+    <!-- ================= TELEGRAM ================= -->
+
+    <section class="telegram">
+
+      <h3>📢 THAM GIA TELEGRAM</h3>
+
+      <p>
+        Tham gia Telegram XBINH TEAM để nhận thông báo,
+        cập nhật và hỗ trợ.
+      </p>
+
+      <button
+        class="telegram-btn"
+        onclick="openTelegram()"
+      >
+        🚀 VÀO TELEGRAM
+      </button>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      © 2026 XBINH TEAM
+    </footer>
+
+  </main>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    /* =========================================
+       XBINH TEAM - JAVASCRIPT
+       Không backend / Không API / LocalStorage
+       ========================================= */
+
+    /*
+      Thay link Telegram tại đây:
+    */
+    const TELEGRAM_URL = "https://t.me/TNCHEAT";
+
+
+    /* =========================================
+       LOCAL STORAGE KEYS
+       ========================================= */
+
+    const STORAGE_HIDE = "xbinh_hide_match";
+    const STORAGE_FPS = "xbinh_fps_mode";
+
+
+    /* =========================================
+       DOM ELEMENTS
+       ========================================= */
+
+    const hideOnBtn = document.getElementById("hideOnBtn");
+    const hideOffBtn = document.getElementById("hideOffBtn");
+    const hideBadge = document.getElementById("hideBadge");
+    const hideStatus = document.getElementById("hideStatus");
+
+    const fps120Btn = document.getElementById("fps120Btn");
+    const fpsShowBtn = document.getElementById("fpsShowBtn");
+    const fpsOffBtn = document.getElementById("fpsOffBtn");
+
+    const fpsBadge = document.getElementById("fpsBadge");
+    const fpsDisplay = document.getElementById("fpsDisplay");
+    const fpsNumber = document.getElementById("fpsNumber");
+
+
+    /* =========================================
+       TOAST
+       ========================================= */
+
+    function showToast(message) {
+
+      const container =
+        document.getElementById("toastContainer");
+
+      const toast =
+        document.createElement("div");
+
+      toast.className = "toast";
+      toast.textContent = message;
+
+      container.innerHTML = "";
+      container.appendChild(toast);
+
+      setTimeout(() => {
+
+        toast.classList.add("hide");
+
+        setTimeout(() => {
+          toast.remove();
+        }, 250);
+
+      }, 1800);
+    }
+
+
+    /* =========================================
+       RIPPLE EFFECT
+       ========================================= */
+
+    document.addEventListener("click", function(event) {
+
+      const button =
+        event.target.closest(".btn, .telegram-btn");
+
+      if (!button) return;
+
+      const circle =
+        document.createElement("span");
+
+      circle.classList.add("ripple");
+
+      const rect =
+        button.getBoundingClientRect();
+
+      const size =
+        Math.max(rect.width, rect.height);
+
+      circle.style.width = size + "px";
+      circle.style.height = size + "px";
+
+      circle.style.left =
+        (event.clientX - rect.left - size / 2) + "px";
+
+      circle.style.top =
+        (event.clientY - rect.top - size / 2) + "px";
+
+      button.appendChild(circle);
+
+      setTimeout(() => {
+        circle.remove();
+      }, 600);
+
+    });
+
+
+    /* =========================================
+       CHE MÃ TRẬN
+       ========================================= */
+
+    function setHideMatch(enabled, button) {
+
+      localStorage.setItem(
+        STORAGE_HIDE,
+        enabled ? "on" : "off"
+      );
+
+      updateHideUI(enabled);
+
+      if (enabled) {
+
+        showToast("✓ Đã bật Che mã trận");
+
+      } else {
+
+        showToast("✓ Đã tắt Che mã trận");
+
+      }
+    }
+
+
+    function updateHideUI(enabled) {
+
+      hideOnBtn.classList.toggle(
+        "active",
+        enabled
+      );
+
+      hideOffBtn.classList.toggle(
+        "active",
+        !enabled
+      );
+
+      hideBadge.textContent =
+        enabled ? "ON" : "OFF";
+
+      hideBadge.classList.toggle(
+        "on",
+        enabled
+      );
+
+      hideStatus.textContent =
+        enabled
+          ? "Trạng thái: Đang bật"
+          : "Trạng thái: Đang tắt";
+    }
+
+
+    /* =========================================
+       SHOW FPS
+       ========================================= */
+
+    let fpsTimer = null;
+
+    function setFPSMode(mode, button) {
+
+      localStorage.setItem(
+        STORAGE_FPS,
+        mode
+      );
+
+      updateFPSUI(mode);
+
+      if (mode === "120") {
+
+        showToast("✓ 120 FPS MODE: ON");
+
+      } else if (mode === "show") {
+
+        showToast("✓ Đã bật hiển thị FPS");
+
+      } else {
+
+        showToast("✓ Đã tắt Show FPS");
+
+      }
+    }
+
+
+    function updateFPSUI(mode) {
+
+      fps120Btn.classList.toggle(
+        "active",
+        mode === "120"
+      );
+
+      fpsShowBtn.classList.toggle(
+        "active",
+        mode === "show"
+      );
+
+      fpsOffBtn.classList.toggle(
+        "active",
+        mode === "off"
+      );
+
+      fpsBadge.classList.toggle(
+        "on",
+        mode !== "off"
+      );
+
+
+      if (mode === "120") {
+
+        fpsBadge.textContent = "ON";
+
+        fpsDisplay.classList.add("show");
+
+        fpsNumber.textContent = "120";
+
+        startFakeFPS(120);
+
+      }
+
+      else if (mode === "show") {
+
+        fpsBadge.textContent = "ON";
+
+        fpsDisplay.classList.add("show");
+
+        startFakeFPS();
+
+      }
+
+      else {
+
+        fpsBadge.textContent = "OFF";
+
+        fpsDisplay.classList.remove("show");
+
+        stopFakeFPS();
+
+      }
+    }
+
+
+    /* =========================================
+       MÔ PHỎNG FPS
+       ========================================= */
+
+    function startFakeFPS(fixed = null) {
+
+      stopFakeFPS();
+
+      if (fixed !== null) {
+
+        fpsNumber.textContent = fixed;
+
+        return;
+      }
+
+      updateFakeFPS();
+
+      fpsTimer = setInterval(
+        updateFakeFPS,
+        900
+      );
+    }
+
+
+    function updateFakeFPS() {
+
+      /*
+        Chỉ mô phỏng số FPS trên giao diện.
+        Không tác động đến game thật.
+      */
+
+      const values = [
+        116,
+        118,
+        119,
+        120,
+        121,
+        117,
+        115
+      ];
+
+      const random =
+        values[
+          Math.floor(
+            Math.random() * values.length
+          )
+        ];
+
+      fpsNumber.textContent = random;
+    }
+
+
+    function stopFakeFPS() {
+
+      if (fpsTimer) {
+
+        clearInterval(fpsTimer);
+
+        fpsTimer = null;
+      }
+    }
+
+
+    /* =========================================
+       TELEGRAM
+       ========================================= */
+
+    function openTelegram() {
+
+      window.open(
+        TELEGRAM_URL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+
+
+    /* =========================================
+       KHỞI TẠO TRẠNG THÁI
+       ========================================= */
+
+    function initializeApp() {
+
+      const savedHide =
+        localStorage.getItem(STORAGE_HIDE);
+
+      const savedFPS =
+        localStorage.getItem(STORAGE_FPS);
+
+
+      /*
+        Mặc định:
+        Che mã trận = OFF
+        FPS = OFF
+      */
+
+      const hideEnabled =
+        savedHide === "on";
+
+      const fpsMode =
+        savedFPS || "off";
+
+
+      updateHideUI(
+        hideEnabled
+      );
+
+      updateFPSUI(
+        fpsMode
+      );
+
+    }
+
+
+    /* Chạy app */
+    initializeApp();
+
+  </script>
+
+</body>
+</html>
